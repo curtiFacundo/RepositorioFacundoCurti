@@ -1,20 +1,19 @@
 #include <iostream>
 using namespace std;
 
+
 void mostrarvec(int vec[], int dim)
 {
-    for (int i = 0; i < dim; ++i) {
+    for (int i = 0; i < dim; ++i)
         cout << vec[i] << '\t';
-    }
     cout << endl;
 }
 
 void mostrarmat(int m[][5], int dfil)
 {
-    const int dcol = 5; // solo por prolijidad
-
+    const int Columnas = 5; // solo por prolijidad
     for (int i = 0; i < dfil; ++i) {
-        for (int j = 0; j < dcol; ++j)
+        for (int j = 0; j < Columnas; ++j)
             cout << m[i][j] << '\t';
         cout << endl;
     }
@@ -22,24 +21,19 @@ void mostrarmat(int m[][5], int dfil)
 }
 
 void Vectorreverso(int vec[], int dim){
-
-    for (int i = dim-1; i >= 0; --i) {
-        cout << vec[i] << '\t';
-    }
-    cout << endl;
-
+    int division=2;
+    int mitad = dim / division;
+    for(int i = 0; i < mitad; i++)
+        swap(vec[i], vec[dim-1-i]);
 }
 
 void Matriztranspuesta(int m[][5], int dfil){
-
-    const int dcol = 5;
-
-    for (int i = 0; i < dfil; ++i) {
-        for (int j = 0; j < dcol; ++j)
-            cout << m[j][i] << '\t';
-        cout << endl;
-    }
+    for(int Fi = 0; Fi < dfil; Fi++)
+        for(int Col = Fi + 1; Col < dfil; Col++)
+            swap( m[Fi][Col], m[Col][Fi]);
 }
+
+
 
 int main()
 {
@@ -60,18 +54,21 @@ int main()
 
     cout<<"vector invertido"<<endl;
     Vectorreverso(vec5, dim5);
+    mostrarvec(vec5, dim5);
 
     cout<<"vector original de 10 elementos"<<endl;
     mostrarvec(vec10, dim10);
 
     cout<<"vector invertido"<<endl;
     Vectorreverso(vec10, dim10);
+    mostrarvec(vec10, dim10);
 
     cout<<"Matriz original"<<endl;
     mostrarmat(matriz, dim5);
+    Matriztranspuesta(matriz, dim5);
 
     cout<<"Matriz transpuesta"<<endl;
-    Matriztranspuesta(matriz, dim5);
+    mostrarmat(matriz, dim5);
 
     return 0;
 }
